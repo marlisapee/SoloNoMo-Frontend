@@ -1,20 +1,18 @@
-import { useState, useEffect } from 'react';
-import './assets/App.css';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
+import './assets/App.css';
 import HomeView from './views/HomeView';
 import AuthView from './views/AuthView';
 import { useUser } from './context/UserContext';
 
 function App() {
-  const [users, setUsers] = useState([]);
-  const { user } = useUser();
+  const { user, setUser } = useUser();
 
   useEffect(() => {
-    fetch('/api/users')
-      .then((response) => response.json())
-      .then((data) => setUsers(data))
-      .catch((error) => console.error('Error fetching users:', error));
-  }, []);
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) setUser(JSON.parse(storedUser));
+  }, [setUser]);
 
   return (
     <>
@@ -22,10 +20,7 @@ function App() {
         {user ? (
           <Route path="/" element={<HomeView />} />
         ) : (
-          <Route
-            path="/"
-            element={<AuthView setLoggedInUser={setLoggedInUser} />}
-          />
+          <Route path="/" element={<AuthView />} />
         )}
       </Routes>
     </>

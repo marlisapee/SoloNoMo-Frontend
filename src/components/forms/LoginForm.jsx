@@ -3,16 +3,24 @@ import React, { useState } from 'react';
 import { loginUser } from '../../services/userService';
 import { useUser } from '../../context/UserContext';
 
-const LoginForm = ({ setLoggedInUser }) => {
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { setUser } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = loginUser({ email, password });
-    console.log(user);
-    if (user) setUser(user);
+    try {
+      const user = await loginUser({ email, password });
+      console.log('Logged in user: ', user);
+
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        setUser(user);
+      }
+    } catch (error) {
+      console.error('Login failed...', error);
+    }
   };
 
   return (
