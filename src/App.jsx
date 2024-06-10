@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './assets/App.css';
+import { Route, Routes } from 'react-router-dom';
+import HomeView from './views/HomeView';
+import AuthView from './views/AuthView';
+import { useUser } from './context/UserContext';
 
 function App() {
   const [users, setUsers] = useState([]);
+  const { user } = useUser();
 
   useEffect(() => {
     fetch('/api/users')
@@ -14,20 +17,18 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={reactLogo} className="App-logo" alt="logo" />
-        <img src={viteLogo} className="App-logo" alt="logo" />
-        <h1>Users</h1>
-        <ul>
-          {users.map((user) => (
-            <li key={user.id}>
-              {user.firstName} {user.lastName} - {user.email}
-            </li>
-          ))}
-        </ul>
-      </header>
-    </div>
+    <>
+      <Routes>
+        {user ? (
+          <Route path="/" element={<HomeView />} />
+        ) : (
+          <Route
+            path="/"
+            element={<AuthView setLoggedInUser={setLoggedInUser} />}
+          />
+        )}
+      </Routes>
+    </>
   );
 }
 
