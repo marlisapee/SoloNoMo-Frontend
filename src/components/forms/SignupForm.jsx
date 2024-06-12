@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { useUser } from '../../context/UserContext';
 import { loginUser, signUpUser } from '../../services/userService';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Textarea,
+} from '@chakra-ui/react';
 
 const SignupForm = () => {
   const [firstName, setFirstName] = useState('');
@@ -38,47 +46,57 @@ const SignupForm = () => {
   };
 
   return (
-    <div>
+    <Box p={4} bg="rgba(69, 123, 157, 0.3)" borderRadius="md">
       <form onSubmit={handleSubmit}>
-        <label>First Name: </label>
-        <input
-          onChange={(e) => setFirstName(e.target.value)}
-          type="text"
-          value={firstName}
-        />
-        <label>Last Name: </label>
-        <input
-          onChange={(e) => setLastName(e.target.value)}
-          type="text"
-          value={lastName}
-        />
-        <label>Email: </label>
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          value={email}
-        />
-        <label>Password: </label>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          value={password}
-        />
-        <label>Profile Picture Url: </label>
-        <input
-          onChange={(e) => setProfilePicture(e.target.value)}
-          type="text"
-          value={profilePicture}
-        />
-        <label>Bio: </label>
-        <input
-          onChange={(e) => setBio(e.target.value)}
-          type="text"
-          value={bio}
-        />
-        <button type="submit">Sign Up</button>
+        <FormControl mb={4}>
+          <FormLabel>First Name</FormLabel>
+          <Input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </FormControl>
+        <FormControl mb={4}>
+          <FormLabel>Last Name</FormLabel>
+          <Input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </FormControl>
+        <FormControl mb={4}>
+          <FormLabel>Email</FormLabel>
+          <Input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </FormControl>
+        <FormControl mb={4}>
+          <FormLabel>Password</FormLabel>
+          <Input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </FormControl>
+        <FormControl mb={4}>
+          <FormLabel>Profile Picture Url</FormLabel>
+          <Input
+            type="text"
+            value={profilePicture}
+            onChange={(e) => setProfilePicture(e.target.value)}
+          />
+        </FormControl>
+        <FormControl mb={4}>
+          <FormLabel>Bio</FormLabel>
+          <Textarea value={bio} onChange={(e) => setBio(e.target.value)} />
+        </FormControl>
+        <Button type="submit" colorScheme="teal" width="full">
+          Sign Up
+        </Button>
       </form>
-    </div>
+    </Box>
   );
 };
 

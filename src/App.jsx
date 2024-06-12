@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import './assets/App.css';
 import HomeView from './views/HomeView';
 import AuthView from './views/AuthView';
 import { useUser } from './context/UserContext';
+import './assets/App.css';
 
-function App() {
+const App = () => {
   const { user, setUser } = useUser();
 
   useEffect(() => {
@@ -15,16 +15,14 @@ function App() {
   }, [setUser]);
 
   return (
-    <>
-      <Routes>
-        {user ? (
-          <Route path="/" element={<HomeView />} />
-        ) : (
-          <Route path="/" element={<AuthView />} />
-        )}
-      </Routes>
-    </>
+    <Routes>
+      {user ? (
+        <Route path="/" element={<HomeView />} />
+      ) : (
+        <Route path="/" element={<AuthView />} />
+      )}
+    </Routes>
   );
-}
+};
 
 export default App;

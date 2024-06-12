@@ -1,7 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react';
-import { loginUser } from '../../services/userService';
 import { useUser } from '../../context/UserContext';
+import { loginUser } from '../../services/userService';
+import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Images } from '../../config/images';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -24,23 +25,30 @@ const LoginForm = () => {
   };
 
   return (
-    <>
+    <Box p={4} bg="rgba(69, 123, 157, 0.3)" borderRadius="md">
+      <img className="logo-auth" src={Images.logoImg} width="100px" />
       <form onSubmit={handleSubmit}>
-        <label>Email: </label>
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          value={email}
-        />
-        <label>Password: </label>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          value={password}
-        />
-        <button type="submit">Log In</button>
+        <FormControl mb={4}>
+          <FormLabel>Email</FormLabel>
+          <Input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </FormControl>
+        <FormControl mb={4}>
+          <FormLabel>Password</FormLabel>
+          <Input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </FormControl>
+        <Button type="submit" colorScheme="teal" width="full">
+          Log In
+        </Button>
       </form>
-    </>
+    </Box>
   );
 };
 
