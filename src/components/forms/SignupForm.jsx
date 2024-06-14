@@ -9,6 +9,7 @@ import {
   Input,
   Textarea,
 } from '@chakra-ui/react';
+import { Images } from '../../config';
 
 const SignupForm = () => {
   const [firstName, setFirstName] = useState('');
@@ -47,6 +48,8 @@ const SignupForm = () => {
 
   return (
     <Box p={4} bg="rgba(69, 123, 157, 0.3)" borderRadius="md">
+      <img className="logo-auth" src={Images.logoImg} width="100px" />
+
       <form onSubmit={handleSubmit}>
         <FormControl mb={4}>
           <FormLabel>First Name</FormLabel>

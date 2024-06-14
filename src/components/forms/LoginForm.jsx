@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useUser } from '../../context/UserContext';
 import { loginUser } from '../../services/userService';
 import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
-import { Images } from '../../config/images';
+import { Images } from '../../config';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');

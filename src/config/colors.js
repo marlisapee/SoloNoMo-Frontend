@@ -1,4 +1,4 @@
-export const Colors = {
+export default {
   redPantone: '#e63946ff',
   honeyDew: '#f1faeeff',
   aquamarine: '#34e0a1ff',

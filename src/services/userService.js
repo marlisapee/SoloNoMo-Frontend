@@ -40,3 +40,13 @@ export const signUpUser = async ({
     throw error;
   }
 };
+
+export const getAllUsers = async () => {
+  try {
+    const response = await axios.get('/api/users');
+    return response.data;
+  } catch (error) {
+    console.error('failed to get users...', error);
+    throw error;
+  }
+};

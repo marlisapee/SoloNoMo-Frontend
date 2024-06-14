@@ -5,6 +5,9 @@ import HomeView from './views/HomeView';
 import AuthView from './views/AuthView';
 import { useUser } from './context/UserContext';
 import './assets/App.css';
+import NavBar from './components/common/NavBar';
+import TravelersView from './views/TravelersView';
+import AddTripView from './views/AddTripView';
 
 const App = () => {
   const { user, setUser } = useUser();
@@ -15,13 +18,20 @@ const App = () => {
   }, [setUser]);
 
   return (
-    <Routes>
-      {user ? (
-        <Route path="/" element={<HomeView />} />
-      ) : (
-        <Route path="/" element={<AuthView />} />
-      )}
-    </Routes>
+    <>
+      {user && <NavBar />}
+      <Routes>
+        {user ? (
+          <>
+            <Route path="/" element={<HomeView />} />
+            <Route path="/travelers" element={<TravelersView />} />
+            <Route path="/createatrip" element={<AddTripView />} />
+          </>
+        ) : (
+          <Route path="/" element={<AuthView />} />
+        )}
+      </Routes>
+    </>
   );
 };
 
