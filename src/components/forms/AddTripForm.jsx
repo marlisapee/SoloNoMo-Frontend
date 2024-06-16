@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { createTrip } from '../../services/tripService';
-import { useUser } from '../../context/UserContext';
 import {
   Alert,
   AlertDescription,
@@ -9,7 +7,15 @@ import {
   useDisclosure,
   Box,
   CloseButton,
+  FormControl,
+  FormLabel,
+  Input,
+  Textarea,
+  Button,
 } from '@chakra-ui/react';
+
+import { createTrip } from '../../services/tripService';
+import { useUser } from '../../context/UserContext';
 
 const AddTripForm = () => {
   const [destination, setDestination] = useState('');
@@ -20,7 +26,7 @@ const AddTripForm = () => {
   const { user } = useUser();
 
   const handleAddTrip = async (e) => {
-    e.preventDefault(); // Prevent form submission default behavior
+    e.preventDefault();
     try {
       const trip = await createTrip({
         userId: user.id,
@@ -31,7 +37,7 @@ const AddTripForm = () => {
       });
       console.log('trip: ', trip);
       clearForm();
-      onOpen(); // Use onOpen to display the alert
+      onOpen();
     } catch (error) {
       console.error('error: ', error);
     }
@@ -45,9 +51,9 @@ const AddTripForm = () => {
   };
 
   return (
-    <div>
+    <Box p={4} maxWidth="500px" mx="auto">
       {isOpen && (
-        <Alert status="success">
+        <Alert status="success" mb={4}>
           <AlertIcon />
           <Box>
             <AlertTitle>Success!</AlertTitle>
@@ -66,33 +72,44 @@ const AddTripForm = () => {
       )}
 
       <form onSubmit={handleAddTrip}>
-        <label>Destination: </label>
-        <input
-          value={destination}
-          onChange={(e) => setDestination(e.target.value)}
-          type="text"
-        />
-        <label>Start Date: </label>
-        <input
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
-        <label>End Date: </label>
-        <input
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
-        <label>Description: </label>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <button type="submit">Create Trip!</button>
+        <FormControl mb={4}>
+          <FormLabel>Destination</FormLabel>
+          <Input
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
+            type="text"
+            placeholder="Enter destination"
+          />
+        </FormControl>
+        <FormControl mb={4}>
+          <FormLabel>Start Date</FormLabel>
+          <Input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </FormControl>
+        <FormControl mb={4}>
+          <FormLabel>End Date</FormLabel>
+          <Input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          />
+        </FormControl>
+        <FormControl mb={4}>
+          <FormLabel>Description</FormLabel>
+          <Textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Enter trip description"
+          />
+        </FormControl>
+        <Button type="submit" colorScheme="blue" width="full">
+          Create Trip!
+        </Button>
       </form>
-    </div>
+    </Box>
   );
 };
 

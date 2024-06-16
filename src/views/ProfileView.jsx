@@ -1,7 +1,12 @@
 import React from 'react';
+import UpdateProfileForm from '../components/forms/UpdateProfileForm';
 
 const ProfileView = () => {
-  return <div>ProfileView</div>;
+  return (
+    <>
+      <UpdateProfileForm />
+    </>
+  );
 };
 
 export default ProfileView;

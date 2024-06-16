@@ -1,14 +1,11 @@
 import { CloseIcon } from '@chakra-ui/icons';
 import {
-  Box,
   IconButton,
-  Stack,
   useDisclosure,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuDivider,
 } from '@chakra-ui/react';
 import React from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
@@ -19,7 +16,7 @@ const Links = [
   { name: 'Create a Trip', path: '/createatrip' },
   { name: 'My Trips', path: '/mytrips' },
   { name: 'My Profile', path: '/profilesettings' },
-  { name: 'Logout', path: '/logout' },
+  { name: 'Logout', path: '/' },
 ];
 
 const ProfileIcon = ({ handleLogout }) => {

@@ -23,6 +23,8 @@ const AllTripsList = () => {
       {trips ? (
         trips.map((trip, index) => (
           <AppCard
+            tripId={trip.tripId}
+            tripCreatorUserId={trip.userId}
             tripCreatorName={trip.userFirstName + ' ' + trip.userLastName}
             tripCreatorImg={Images.logoImg}
             tripDestination={trip.destination}

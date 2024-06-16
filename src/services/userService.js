@@ -50,3 +50,29 @@ export const getAllUsers = async () => {
     throw error;
   }
 };
+
+export const updateUserProfile = async ({
+  id,
+  firstName,
+  lastName,
+  email,
+  profilePicture,
+  password,
+  bio,
+}) => {
+  try {
+    const response = await axios.put(`/api/users/${id}`, {
+      firstName,
+      lastName,
+      email,
+      password,
+      profilePicture,
+      bio,
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

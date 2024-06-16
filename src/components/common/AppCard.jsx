@@ -16,8 +16,10 @@ import {
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { BiShare, BiHeart } from 'react-icons/bi';
 import { Colors } from '../../config';
+import { Link } from 'react-router-dom';
 
 const AppCard = ({
+  tripId,
   tripCreatorName,
   tripCreatorImg,
   tripDestination,
@@ -48,7 +50,9 @@ const AppCard = ({
         <CardBody>
           <Text>{tripDescription}</Text>
         </CardBody>
-        <Image objectFit="cover" src={tripImage} alt="trip image" />
+        <Link to={`/trip/${tripId}`}>
+          <Image objectFit="cover" src={tripImage} alt="trip image" />
+        </Link>
 
         <CardFooter
           justify="space-between"
