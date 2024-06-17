@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import AppCard from '../common/AppCard';
-import { getAllTrips } from '../../services/tripService';
 import { Images } from '../../config';
 import useTrips from '../../hooks/trip/useTrips';
-import { Spinner } from '@chakra-ui/react';
+import AppSpinner from '../common/AppSpinner';
 
 const AllTripsList = () => {
   const { trips, error, loading } = useTrips();
 
-  if (loading) return <Spinner size="xl" color="red.500" />;
+  if (loading) return <AppSpinner />;
 
   return (
     <div id="all-trips-list-container">

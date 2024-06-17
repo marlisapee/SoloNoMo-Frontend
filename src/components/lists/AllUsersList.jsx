@@ -1,36 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { getAllUsers } from '../../services/userService';
 import ListCard from '../common/ListCard';
-import { getAllTrips } from '../../services/tripService';
+import useTravelers from '../../hooks/user/useTravelers';
+import AppSpinner from '../common/AppSpinner';
+import { SimpleGrid } from '@chakra-ui/react';
 
 const AllUsersList = () => {
-  const [users, setUsers] = useState([]);
+  const { travelers, loading, error } = useTravelers();
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const allTripsUsers = await getAllTrips();
-        setUsers(allTripsUsers);
-      } catch (error) {
-        console.error('error fetching users', error);
-      }
-    };
-    fetchUsers();
-  }, []);
+  if (loading) return <AppSpinner />;
 
   return (
-    <>
-      {users &&
-        users.map((user) => (
-          <ListCard
-            userFirstName={user.userFirstName}
-            userLastName={user.userLastName}
-            userTripCount={user.userTripCount}
-            userProfileImg
-          />
-        ))}
-    </>
+    <div style={{ padding: '20px' }}>
+      <SimpleGrid columns={3} spacing={10}>
+        {travelers &&
+          travelers.map((traveler) => (
+            <ListCard
+              userFirstName={traveler.firstName}
+              userLastName={traveler.lastName}
+              userTripCount={traveler.tripCount}
+              userProfileImg
+              key={traveler.id}
+            />
+          ))}
+      </SimpleGrid>
+    </div>
   );
 };
 
