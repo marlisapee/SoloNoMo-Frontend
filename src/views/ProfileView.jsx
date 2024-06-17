@@ -13,6 +13,7 @@ const ProfileView = () => {
         text="Profile Settings"
         size="2xl"
         icon={FaCog}
+        iconColor={Colors.aquamarine}
       />
       <UpdateProfileForm />
     </>
