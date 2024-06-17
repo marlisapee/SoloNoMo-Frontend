@@ -5,10 +5,10 @@ import { Images } from '../../config';
 const Header = ({ text, color, size, img }) => {
   return (
     <div id="header-container">
-      <Heading as="h1" size={size} style={{ color: color }}>
+      <Heading as="h1" size={size} style={{ color: color, padding: '20px' }}>
         {text}
       </Heading>
-      {img && <img src={Images.airplaneImg} width="100px" />}
+      {img && <img src={Images.airplaneImg} width="8%" />}
     </div>
   );
 };

@@ -10,6 +10,16 @@ export const getAllTrips = async () => {
   }
 };
 
+export const getOneTrip = async (id) => {
+  try {
+    const response = await axios.get(`/api/trips/${id}`);
+    console.log('response data: ', response.data);
+    return response.data;
+  } catch (error) {
+    console.error(`failed to fetch trip with id ${id}`, error);
+  }
+};
+
 export const createTrip = async ({
   userId,
   destination,

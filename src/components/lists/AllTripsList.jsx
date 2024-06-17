@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getAllTrips } from '../../services/tripService';
 import AppCard from '../common/AppCard';
+import { getAllTrips } from '../../services/tripService';
 import { Images } from '../../config';
 
 const AllTripsList = () => {
@@ -29,7 +29,7 @@ const AllTripsList = () => {
             tripCreatorImg={Images.logoImg}
             tripDestination={trip.destination}
             tripDescription={trip.description}
-            tripImage={Images.logoImg}
+            tripImage={Images.tripOne}
             key={index}
           />
         ))

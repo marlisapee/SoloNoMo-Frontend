@@ -13,7 +13,7 @@ import {
   Avatar,
   Button,
 } from '@chakra-ui/react';
-import { BsThreeDotsVertical } from 'react-icons/bs';
+import { BsFillHeartFill, BsHearts, BsThreeDotsVertical } from 'react-icons/bs';
 import { BiShare, BiHeart } from 'react-icons/bi';
 import { Colors } from '../../config';
 import { Link } from 'react-router-dom';
@@ -27,51 +27,64 @@ const AppCard = ({
   tripImage,
 }) => {
   return (
-    <>
-      <Card maxW="xs" bg={Colors.cerulean} style={{ marginBottom: '20px' }}>
-        <CardHeader>
-          <Flex spacing="4">
-            <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-              <Avatar size="lg" src={tripCreatorImg} />
+    <Card maxW="xs" bg={Colors.cerulean} style={{ marginBottom: '20px' }}>
+      <CardHeader>
+        <Flex spacing="4">
+          <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
+            <Avatar size="lg" src={tripCreatorImg} />
 
-              <Box>
-                <Heading size="md">{tripCreatorName}</Heading>
-                <Text fontWeight="700">Destination: {tripDestination}</Text>
-              </Box>
-            </Flex>
-            <IconButton
-              variant="ghost"
-              colorScheme="gray"
-              aria-label="See menu"
-              icon={<BsThreeDotsVertical />}
-            />
+            <Box>
+              <Heading size="md">{tripCreatorName}</Heading>
+              <Text fontWeight="700">Destination: {tripDestination}</Text>
+            </Box>
           </Flex>
-        </CardHeader>
-        <CardBody>
-          <Text>{tripDescription}</Text>
-        </CardBody>
-        <Link to={`/trip/${tripId}`}>
-          <Image objectFit="cover" src={tripImage} alt="trip image" />
-        </Link>
-
-        <CardFooter
-          justify="space-between"
-          flexWrap="wrap"
-          sx={{
-            '& > button': {
-              minW: '136px',
-            },
-          }}
+          <IconButton
+            variant="ghost"
+            colorScheme="gray"
+            aria-label="See menu"
+            icon={<BsThreeDotsVertical />}
+          />
+        </Flex>
+      </CardHeader>
+      <CardBody>
+        <Text>{tripDescription}</Text>
+      </CardBody>
+      <Link to={`/trips/${tripId}`}>
+        <Box height="200px" width="100%" overflow="hidden">
+          <Image
+            src={tripImage}
+            alt="trip image"
+            objectFit="cover"
+            width="100%"
+            height="100%"
+          />
+        </Box>
+      </Link>
+      <CardFooter
+        justify="space-between"
+        flexWrap="wrap"
+        sx={{
+          '& > button': {
+            minW: '136px',
+          },
+        }}
+      >
+        <Button
+          flex="1"
+          variant="ghost"
+          leftIcon={<BsHearts fontSize={'30px'} color={Colors.redPantone} />}
         >
-          <Button flex="1" variant="ghost" leftIcon={<BiHeart />}>
-            Favorite
-          </Button>
-          <Button flex="1" variant="ghost" leftIcon={<BiShare />}>
-            Share
-          </Button>
-        </CardFooter>
-      </Card>
-    </>
+          Favorite
+        </Button>
+        <Button
+          flex="1"
+          variant="ghost"
+          leftIcon={<BiShare fontSize={'30px'} color={Colors.aquamarine} />}
+        >
+          Share
+        </Button>
+      </CardFooter>
+    </Card>
   );
 };
 

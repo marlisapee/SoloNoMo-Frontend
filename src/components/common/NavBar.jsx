@@ -11,7 +11,7 @@ import {
   useTheme,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import { useUser } from '../../context/UserContext';
 import ProfileIcon from './ProfileIcon';
@@ -50,20 +50,22 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const theme = useTheme();
   const { setUser } = useUser();
+  const navigate = useNavigate();
 
-  const bgColor = useColorModeValue(
-    theme.colors.honeydew[500],
-    theme.colors.berkeleyBlue[500]
-  );
+  // const bgColor = useColorModeValue(
+  //   theme.colors.honeydew[500],
+  //   theme.colors.berkeleyBlue[500]
+  // );
 
   const handleLogout = () => {
     localStorage.removeItem('user');
     setUser(null);
+    navigate('/');
   };
 
   return (
     <>
-      <Box bg={bgColor} px={4}>
+      <Box bg="transparent" px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}

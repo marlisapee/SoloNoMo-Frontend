@@ -10,12 +10,10 @@ import theme from './config/theme.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <BrowserRouter>
-        <UserProvider>
-          <App />
-        </UserProvider>
-      </BrowserRouter>
-    </ChakraProvider>
+    <BrowserRouter>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );

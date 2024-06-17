@@ -1,4 +1,10 @@
 export default {
-  logoImg: new URL('../assets/Solo.png', import.meta.url).href,
-  airplaneImg: new URL('../assets/airplane.png', import.meta.url).href,
+  logoImg: new URL('../assets/images/Solo.png', import.meta.url).href,
+  airplaneImg: new URL('../assets/images/airplane.png', import.meta.url).href,
+  tripOne: new URL('../assets/images/trips/trip1.avif', import.meta.url).href,
+  tripTwo: new URL('../assets/images/trips/trip2.avif', import.meta.url).href,
+  logoTransparent: new URL(
+    '../assets/images/logo-transparent.png',
+    import.meta.url
+  ).href,
 };
