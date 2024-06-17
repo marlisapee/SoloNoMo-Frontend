@@ -4,6 +4,7 @@ import Header from '../components/common/Header';
 import AllTripsList from '../components/lists/AllTripsList';
 import { useUser } from '../context/UserContext';
 import { Colors } from '../config';
+import { GiIsland } from 'react-icons/gi';
 
 const HomeView = () => {
   const { user } = useUser();
@@ -13,7 +14,8 @@ const HomeView = () => {
         color={Colors.aquamarine}
         text={`Welcome back, ${user.firstName}! `}
         size={'2xl'}
-        img={false}
+        icon={GiIsland}
+        iconColor={Colors.redPantone}
       />
       <div id="home-view-header-search-bar-container">
         <Header color={Colors.honeyDew} text="Where to next?" />
