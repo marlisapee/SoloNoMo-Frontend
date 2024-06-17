@@ -2,21 +2,13 @@ import React, { useEffect, useState } from 'react';
 import AppCard from '../common/AppCard';
 import { getAllTrips } from '../../services/tripService';
 import { Images } from '../../config';
+import useTrips from '../../hooks/trip/useTrips';
+import { Spinner } from '@chakra-ui/react';
 
 const AllTripsList = () => {
-  const [trips, setTrips] = useState([]);
+  const { trips, error, loading } = useTrips();
 
-  useEffect(() => {
-    const fetchAllTrips = async () => {
-      try {
-        const trips = await getAllTrips();
-        setTrips(trips);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchAllTrips();
-  }, []);
+  if (loading) return <Spinner size="xl" color="red.500" />;
 
   return (
     <div id="all-trips-list-container">

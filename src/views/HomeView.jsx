@@ -1,17 +1,9 @@
 import React from 'react';
-
-import { useUser } from '../context/UserContext';
+import SearchBar from '../components/common/SearchBar';
 import Header from '../components/common/Header';
-import { Colors } from '../config';
 import AllTripsList from '../components/lists/AllTripsList';
-import {
-  Button,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-} from '@chakra-ui/react';
-import { Search2Icon, SearchIcon } from '@chakra-ui/icons';
+import { useUser } from '../context/UserContext';
+import { Colors } from '../config';
 
 const HomeView = () => {
   const { user } = useUser();
@@ -19,35 +11,13 @@ const HomeView = () => {
     <>
       <Header
         color={Colors.aquamarine}
-        text={'Welcome back, ' + user.firstName + '!'}
+        text={`Welcome back, ${user.firstName}! `}
         size={'2xl'}
         img={false}
       />
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <div id="home-view-header-search-bar-container">
         <Header color={Colors.honeyDew} text="Where to next?" />
-        <InputGroup style={{ width: '50%' }}>
-          <InputLeftElement pointerEvents="none">
-            <Search2Icon fontSize={'2xl'} color="gray.300" />
-          </InputLeftElement>
-          <Input
-            borderRadius="40px"
-            type="text"
-            placeholder="Places to go..."
-          />
-          <InputRightElement width={'4.5rem'}>
-            <Button borderRadius={'40px'} size="sm">
-              Search
-            </Button>
-          </InputRightElement>
-        </InputGroup>
+        <SearchBar placeholderText="Places to go..." />
       </div>
       <div style={{ padding: '40px' }}>
         <AllTripsList />

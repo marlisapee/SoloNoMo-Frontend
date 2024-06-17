@@ -15,6 +15,7 @@ import FavoritesView from './views/FavoritesView';
 import MyTripsView from './views/MyTripsView';
 import theme from './config/theme';
 import './assets/App.css';
+import AboutView from './views/AboutView';
 
 const App = () => {
   const { user, setUser } = useUser();
@@ -37,6 +38,7 @@ const App = () => {
             <Route path="/trips/:tripId" element={<SingleTripView />} />
             <Route path="/myfavorites" element={<FavoritesView />} />
             <Route path="/mytrips" element={<MyTripsView />} />
+            <Route path="/about" element={<AboutView />} />
           </>
         ) : (
           <Route path="/" element={<AuthView />} />
