@@ -1,4 +1,11 @@
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogCloseButton,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
   Button,
   ButtonGroup,
   Card,
@@ -9,9 +16,11 @@ import {
   Image,
   Stack,
   Text,
+  useDisclosure,
 } from '@chakra-ui/react';
 import React from 'react';
 import { Colors, Images } from '../../config';
+import AppAlert from './AppAlert';
 
 const AppCard2 = ({
   heading,
@@ -20,6 +29,8 @@ const AppCard2 = ({
   hostFirstName,
   hostLastName,
 }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const handleParticipate = () => {};
   const handleFavorite = () => {};
 
@@ -47,10 +58,16 @@ const AppCard2 = ({
             variant="solid"
             bgColor={Colors.aquamarine}
             color={Colors.black}
-            onClick={handleParticipate}
+            onClick={onOpen}
           >
             Express Interest
           </Button>
+          <AppAlert
+            isOpen={isOpen}
+            onClose={onClose}
+            alertHeader={'Join trip?'}
+            alertBodyText={`Are you sure you want to send a participation request to ${hostFirstName}?`}
+          />
           <Button
             variant="ghost"
             onClick={handleFavorite}
