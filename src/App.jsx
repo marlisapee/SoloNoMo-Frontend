@@ -37,7 +37,7 @@ const App = () => {
             <Route path="/profilesettings" element={<ProfileView />} />
             <Route path="/trips/:tripId" element={<SingleTripView />} />
             <Route path="/myfavorites" element={<FavoritesView />} />
-            <Route path="/mytrips" element={<MyTripsView />} />
+            <Route path="/mytrips" element={<MyTripsView userId={user.id} />} />
             <Route path="/about" element={<AboutView />} />
           </>
         ) : (

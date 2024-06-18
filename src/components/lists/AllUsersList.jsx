@@ -8,10 +8,9 @@ import { SimpleGrid } from '@chakra-ui/react';
 const AllUsersList = () => {
   const { travelers, loading, error } = useTravelers();
 
-  if (loading) return <AppSpinner />;
-
   return (
     <div style={{ padding: '20px' }}>
+      {loading && <AppSpinner />}
       <SimpleGrid columns={3} spacing={10}>
         {travelers &&
           travelers.map((traveler) => (

@@ -7,4 +7,5 @@ export default {
     '../assets/images/logo-transparent.png',
     import.meta.url
   ).href,
+  userImg: new URL('../assets/images/user.png', import.meta.url).href,
 };

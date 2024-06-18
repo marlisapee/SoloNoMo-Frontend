@@ -20,6 +20,15 @@ export const getOneTrip = async (id) => {
   }
 };
 
+export const getUserTrips = async (id) => {
+  try {
+    const response = await axios.get(`/api/trips/user/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const createTrip = async ({
   userId,
   destination,
@@ -39,5 +48,14 @@ export const createTrip = async ({
     return response.data;
   } catch (error) {
     console.error('failed to create a trip...', error);
+  }
+};
+
+export const getTripParticipants = async (tripId) => {
+  try {
+    const response = await axios.get(`/api/tripparticipants/trip/${tripId}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
   }
 };

@@ -1,25 +1,63 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import { getOneTrip } from '../services/tripService';
+import useOneTrip from '../hooks/trip/useOneTrip';
+import useTripParticipants from '../hooks/trip/useTripParticipants';
+import AppSpinner from '../components/common/AppSpinner';
+import AppCard2 from '../components/common/AppCard2';
+import ParticipantCard from '../components/common/ParticipantCard';
+import { SimpleGrid, Box, useBreakpointValue } from '@chakra-ui/react';
+import { GiFootTrip } from 'react-icons/gi';
+import Header from '../components/common/Header';
+import { Colors } from '../config';
 
 const SingleTripView = () => {
   const { tripId } = useParams();
-  const [currentTrip, setCurrentTrip] = useState(null);
+  const { currentTrip, loading, error } = useOneTrip(tripId);
+  const { participants } = useTripParticipants(tripId);
 
-  useEffect(() => {
-    const fetchTrip = async () => {
-      try {
-        const trip = await getOneTrip(tripId);
-        setCurrentTrip(trip);
-        console.log('current trip: ', trip);
-      } catch (error) {
-        console.error('error fetching trip data', error);
-      }
-    };
-    fetchTrip();
-  }, []);
+  const columns = useBreakpointValue({ base: 1, md: 2 });
 
-  return <div>{currentTrip && <p>{currentTrip.destination}</p>}</div>;
+  return (
+    <>
+      <Header
+        text={`Trip to ${currentTrip?.destination} with ${currentTrip?.userFirstName}`}
+        size={'2xl'}
+        icon={GiFootTrip}
+        iconColor={Colors.redPantone}
+      />
+      <Box width="100%" padding={50}>
+        {loading && <AppSpinner />}
+
+        {currentTrip && (
+          <SimpleGrid columns={columns} spacing={10} width="100%">
+            <Box>
+              <AppCard2
+                heading={currentTrip.destination}
+                description={currentTrip.description}
+                numParticipants={participants.length}
+                hostFirstName={currentTrip.userFirstName}
+                hostLastName={currentTrip.userLastName}
+              />
+            </Box>
+            <Box>
+              <SimpleGrid columns={1} spacing={10}>
+                {participants &&
+                  participants.length > 0 &&
+                  participants.map((person, index) => (
+                    <ParticipantCard
+                      key={index}
+                      userFirstName={person.participantFirstName}
+                      userLastName={person.participantLastName}
+                      userEmail={person.participantEmail}
+                    />
+                  ))}
+              </SimpleGrid>
+            </Box>
+          </SimpleGrid>
+        )}
+      </Box>
+    </>
+  );
 };
 
 export default SingleTripView;
