@@ -6,24 +6,25 @@ const useTripParticipants = (tripId) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const getParticipants = async () => {
-      try {
-        setLoading(true);
-        const users = await getTripParticipants(tripId);
+  const getParticipants = async () => {
+    try {
+      setLoading(true);
+      const users = await getTripParticipants(tripId);
 
-        setParticipants(users);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-        setError(error.message);
-        throw error;
-      }
-    };
+      setParticipants(users);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setError(error.message);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
     getParticipants();
   }, []);
 
-  return { participants, loading, error };
+  return { participants, loading, error, getParticipants };
 };
 
 export default useTripParticipants;

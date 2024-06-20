@@ -1,11 +1,4 @@
 import {
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogCloseButton,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogOverlay,
   Button,
   ButtonGroup,
   Card,
@@ -21,6 +14,7 @@ import {
 import React from 'react';
 import { Colors, Images } from '../../config';
 import AppAlert from './AppAlert';
+import { createParticipant } from '../../services/tripService';
 
 const AppCard2 = ({
   heading,
@@ -28,10 +22,21 @@ const AppCard2 = ({
   numParticipants,
   hostFirstName,
   hostLastName,
+  tripId,
+  userId,
+  refetch,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleParticipate = () => {};
+  const handleParticipate = async (e) => {
+    e.preventDefault();
+    try {
+      await createParticipant({ tripId, userId });
+      refetch();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   const handleFavorite = () => {};
 
   return (
@@ -67,6 +72,7 @@ const AppCard2 = ({
             onClose={onClose}
             alertHeader={'Join trip?'}
             alertBodyText={`Are you sure you want to send a participation request to ${hostFirstName}?`}
+            handleClick={handleParticipate}
           />
           <Button
             variant="ghost"

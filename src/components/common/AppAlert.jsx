@@ -11,7 +11,13 @@ import {
 import React from 'react';
 import { Colors } from '../../config';
 
-const AppAlert = ({ isOpen, onClose, alertHeader, alertBodyText }) => {
+const AppAlert = ({
+  isOpen,
+  onClose,
+  alertHeader,
+  alertBodyText,
+  handleClick,
+}) => {
   return (
     <AlertDialog
       motionPreset="slideInBottom"
@@ -27,7 +33,12 @@ const AppAlert = ({ isOpen, onClose, alertHeader, alertBodyText }) => {
         <AlertDialogBody>{alertBodyText}</AlertDialogBody>
         <AlertDialogFooter>
           <Button onClick={onClose}>No</Button>
-          <Button bgColor={Colors.aquamarine} color={Colors.black} ml={3}>
+          <Button
+            onClick={handleClick}
+            bgColor={Colors.aquamarine}
+            color={Colors.black}
+            ml={3}
+          >
             Yes
           </Button>
         </AlertDialogFooter>

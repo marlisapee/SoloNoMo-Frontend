@@ -59,3 +59,15 @@ export const getTripParticipants = async (tripId) => {
     console.error(error);
   }
 };
+
+export const createParticipant = async ({ tripId, userId }) => {
+  try {
+    const response = await axios.post('/api/tripparticipants', {
+      tripId,
+      userId,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
